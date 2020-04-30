@@ -19,6 +19,10 @@ class Main {
      System.out.println("ex: \"Hello\", 'Hello90'");
       String stringL = input.nextLine();
      System.out.println(isAString(stringL));
+     System.out.println("Enter Variable name : ");
+     System.out.println("ex: var(r=3) , var a,b");
+      String varL = input.nextLine();
+     System.out.println(isAVar(varL));
   }
  public static String isAFloat(String floatL){
  
@@ -49,15 +53,28 @@ public static String isAInt(String intL){
 }
 
 public static String isAString(String stringL){
-   String sl = "no";
-   	if(stringL.matches("\"[a-z*A-Z*\\p{ASCII}*\\p{Punct}*\\p{Digit}*]*\"")){
+   String sl = "Not a string";
+   if(stringL.matches("\"[a-z*A-Z*\\p{ASCII}*\\p{Punct}*\\p{Digit}*]*\"")){
      sl = "String";
    }else if (stringL.matches("'[\\p{Alnum}*\\p{ASCII}*\\p{Punct}*]*'")){
       sl = "String";
-   }else if (stringL.matches("[\"*'*]*[\\p{Alnum}*\\p{ASCII}*\\p{Punct}*]*")){
+   }else if (stringL.matches("[\"+'+]+[\\p{Alnum}*\\p{ASCII}*\\p{Punct}*]*[\"+'+]+")){
       sl = "String";
    }
    return sl;
+}
+	public static String isAVar(String stringL){
+   String vl = "Not a var";
+   	if(stringL.matches("var[ ]*[(][a-z*A-Z*\\p{ASCII}*][)]")){
+     vl = "Var";
+   }else if (stringL.matches("var[ ]*[(][a-z*A-Z*\\p{ASCII}*][)]")){
+      vl = "Var";
+   }else if (stringL.matches("var[ ]*[(][a-z*A-Z*\\p{ASCII}*]=?[\\p{Alnum}*\\p{ASCII}*]?[)]")){
+      vl = "Var";
+   }else if (stringL.matches("var[ ]*[a-z*A-Z*[,]\\p{ASCII}*]*")){
+      vl = "Var";
+   }
+   return vl;
 }
 
 }
